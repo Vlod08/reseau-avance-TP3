@@ -1,0 +1,8 @@
+# to eth0 an IPv4 address is assigned
+ip address add 195.11.15.2/24 dev eth0
+
+# a default router is selected
+ip route add default via 195.11.15.1 dev eth0
+
+tc qdisc add dev eth0 root tbf rate 50kbit burst 32kbit latency 400ms
+tc qdisc add dev eth0 root netem delay 125ms
